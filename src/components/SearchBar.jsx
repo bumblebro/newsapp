@@ -4,7 +4,6 @@ function SearchBar({ setInput, setButton, searchByKeyword, button }) {
       className="max-w-[800px]  sm:mx-auto mt-4 bg-gray-100  shadow-md flex items-center justify-center transition-all border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-500"
       onSubmit={(e) => {
         e.preventDefault();
-        console.log("Trgiggggggered");
         setButton(false);
         searchByKeyword();
       }}

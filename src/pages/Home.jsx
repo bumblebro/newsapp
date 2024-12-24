@@ -40,27 +40,23 @@ function Home() {
       );
     }
     if (startdate) {
-      console.log(startdate);
 
       setFilteredNews((prev) =>
         prev.filter((item) => item.datePublished > startdate)
       );
     }
     if (enddate) {
-      console.log(enddate);
 
       setFilteredNews((prev) =>
         prev.filter((item) => item.datePublished < enddate)
       );
     }
     if (source) {
-      console.log(source);
 
       setFilteredNews((prev) =>
         prev.filter((item) => item.source.toLowerCase() == source.toLowerCase())
       );
     }
-    console.log(filterednews);
   }, [startdate, enddate, category, source, news]);
 
   useEffect(() => {
@@ -70,12 +66,10 @@ function Home() {
     const source = JSON.parse(localStorage.getItem("Sources"));
 
     const fetchData = async () => {
-      console.log(source);
       // if (true) return;
-      // if (settings == true) return;
+      if (settings == true) return;
       if (category == null && author == null && source == null) {
         const result = await Guardianapi("");
-        console.log(result.articles);
         setPrefNews(
           result.articles.map((item) => {
             return {
@@ -116,7 +110,6 @@ function Home() {
           let allArticles = [];
           for (let item of category) {
             const result = await Guardianapibycategory(item);
-            console.log(result.articles);
             allArticles = [
               ...allArticles,
               ...result.articles.map((item) => {
@@ -132,12 +125,10 @@ function Home() {
                 };
               }),
             ];
-            console.log(allArticles);
           }
           setPrefNews(allArticles);
         } else {
           const result = await Guardianapi("");
-          console.log(result.articles);
           setPrefNews((prev) => [
             ...prev,
             ...result.articles.map((item) => {
@@ -159,10 +150,8 @@ function Home() {
         if (category.length > 0) {
           let allArticles = [];
           for (let item of category) {
-            console.log("true");
             const result = await Newsapi(item);
-            console.log(result);
-            console.log(result.articles);
+        
 
             const filteredArticles = result.articles
               .filter(
@@ -182,12 +171,10 @@ function Home() {
               });
 
             allArticles = [...allArticles, ...filteredArticles];
-            console.log(allArticles);
           }
           setPrefNews((prev) => [...prev, ...allArticles]);
         } else {
           const result2 = await Newsapi("Random");
-          console.log("result2", result2);
           setPrefNews((prev) => [
             ...prev,
             ...result2.articles
@@ -215,7 +202,6 @@ function Home() {
 
   const searchByKeyword = async () => {
     const guardian = await Guardianapi(input);
-    console.log(guardian);
     setNews(
       guardian.articles.map((item) => {
         return {
@@ -231,7 +217,6 @@ function Home() {
       })
     );
     const newsapi = await Newsapi(input);
-    console.log(newsapi);
     setNews((prev) => [
       ...prev,
       ...newsapi.articles.map((item) => {
@@ -245,7 +230,6 @@ function Home() {
         };
       }),
     ]);
-    console.log(news);
   };
 
   return (

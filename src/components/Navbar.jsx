@@ -16,7 +16,6 @@ function Navbar({ setSettings }) {
         <button
           className="px-2 py-1 text-gray-800 transition-all bg-gray-200 rounded-lg shadow-sm hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400"
           onClick={() => {
-            console.log("PRESSED");
             setSettings((prev) => !prev);
           }}
         >
