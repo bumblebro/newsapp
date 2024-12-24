@@ -1,10 +1,9 @@
-import { useState } from "react";
 import Dropdown from "./Dropdown";
 import { authors } from "../utils/Authors";
 import { categories } from "../utils/Categories";
 import { sources } from "../utils/Sources";
 
-function PersonalizedNews({ setSettings }) {
+function PersonalizedNews({ setSettings, setPrefToggle }) {
   return (
     <div className="h-[100vh]">
       <button
@@ -60,6 +59,7 @@ function PersonalizedNews({ setSettings }) {
             className="w-full px-6 py-2 font-semibold text-white bg-blue-600 rounded-lg shadow-md sm:w-auto hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
             onClick={() => {
               setSettings((prev) => !prev);
+              // setPrefToggle((prev) => !prev);
             }}
           >
             Set Preference
@@ -69,6 +69,7 @@ function PersonalizedNews({ setSettings }) {
             onClick={() => {
               localStorage.clear();
               setSettings((prev) => !prev);
+              // setPrefToggle((prev) => !prev);
             }}
           >
             Clear

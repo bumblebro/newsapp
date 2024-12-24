@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 function Filter({ setStartDate, setEndDate, setCategory, setSource, news }) {
   return (
     <div className="max-w-[800px] mx-auto mt-6 bg-gray-100 p-6 rounded-lg shadow-md">
@@ -49,10 +47,11 @@ function Filter({ setStartDate, setEndDate, setCategory, setSource, news }) {
           }}
           className="w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg sm:w-1/2 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-500"
         >
-          <option value="all">Select All</option>
+          <option disabled selected>
+            Select source
+          </option>
           <option value="guardian">Guardian</option>
-          <option value="newyork">New York</option>
-          <option value="bbc">BBC</option>
+          <option value="newsapi">NewAPI</option>
         </select>
       </div>
     </div>

@@ -7,8 +7,6 @@ import NewsList from "../components/NewsList";
 import PersonalizedNews from "../components/PersonalizedNews";
 import Navbar from "../components/Navbar";
 import Newsapi from "../services/Newsapi";
-import { newsapires } from "../utils/newsapires";
-import { guardianres } from "../utils/guardianres";
 
 function Home() {
   const [input, setInput] = useState();
@@ -21,6 +19,7 @@ function Home() {
   const [source, setSource] = useState(null);
   const [settings, setSettings] = useState(false);
   const [prefNews, setPrefNews] = useState([]);
+  const [prefToggle, setPrefToggle] = useState(false);
 
   // useEffect(() => {
   //   const interval = setTimeout(() => {
@@ -30,11 +29,10 @@ function Home() {
   // }, [input]);
 
   useEffect(() => {
-    const arr = guardianres.response.results.map((item) => item.sectionName);
-    console.log(arr);
+    // const arr = guardianres.response.results.map((item) => item.sectionName);
+    // console.log(arr);
     setFilteredNews(news);
     if (category) {
-      console.log("categroyfilter activated");
       setFilteredNews((prev) =>
         prev.filter(
           (item) => item.section.toLowerCase() == category.toLowerCase()
@@ -74,7 +72,7 @@ function Home() {
     const fetchData = async () => {
       console.log(source);
       // if (true) return;
-      if (settings) return;
+      // if (settings == true) return;
       if (category == null && author == null && source == null) {
         const result = await Guardianapi("");
         console.log(result.articles);
@@ -92,28 +90,28 @@ function Home() {
             };
           })
         );
-        //   const result2 = await Newsapi("Random");
-        //   console.log("result2", result2);
-        //   setPrefNews((prev) => [
-        //     ...prev,
-        //     ...result2.articles.map((item) => {
-        //       return {
-        //         author: item.author,
-        //         title: item.title,
-        //         url: item.url,
-        //         datePublished: moment(item.publishedAt)
-        //           .utc()
-        //           .format("YYYY-MM-DD"),
-        //         section: "Random",
-        //         source: "newsapi",
-        //       };
-        //     }),
-        //   ]);
+        // const result2 = await Newsapi("Random");
+        // console.log("result2", result2);
+        // setPrefNews((prev) => [
+        //   ...prev,
+        //   ...result2.articles.map((item) => {
+        //     return {
+        //       author: item.author,
+        //       title: item.title,
+        //       url: item.url,
+        //       datePublished: moment(item.publishedAt)
+        //         .utc()
+        //         .format("YYYY-MM-DD"),
+        //       section: "Random",
+        //       source: "newsapi",
+        //     };
+        //   }),
+        // ]);
 
         return;
       }
-
-      if (source?.includes("guardian") && author.length == 0) {
+      if (source?.includes("guardian")) {
+        // if (source?.includes("guardian") && author.length == 0) {
         if (category.length > 0) {
           let allArticles = [];
           for (let item of category) {
@@ -251,9 +249,12 @@ function Home() {
   };
 
   return (
-    <div className="w-full p-6 rounded-lg shadow-md bg-gray-50">
+    <div className="w-full p-6 rounded-lg bg-gray-50 ">
       {settings ? (
-        <PersonalizedNews setSettings={setSettings} />
+        <PersonalizedNews
+          setSettings={setSettings}
+          setPrefToggle={setPrefToggle}
+        />
       ) : (
         <>
           <Navbar setSettings={setSettings} />
@@ -273,7 +274,16 @@ function Home() {
               news={news}
             />
           )}
-          {filterednews.length > 0 ? (
+          {/* {input?.length > 0 ? (
+            <NewsList news={filterednews} type={"search"} />
+          ) : (
+            <NewsList news={prefNews} type={"home"} />
+          )} */}
+          {filterednews.length == 0 && prefNews.length == 0 ? (
+            <div className="mt-20 text-lg font-semibold  h-[100vh] text-center">
+              Loading articles...
+            </div>
+          ) : input?.length > 0 ? (
             <NewsList news={filterednews} type={"search"} />
           ) : (
             <NewsList news={prefNews} type={"home"} />
