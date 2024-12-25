@@ -6,15 +6,13 @@ A React-based news aggregator website that pulls articles from various sources.
 
 - Article search and filtering
 - Personalized news feed
-- Mobile-responsive design
 
 ## Technologies Used
 
 - React.js
 - APIs: [NewsAPI, The Guardian]
-- Docker for containerization
 
-## How to Run Locally
+## Running Locally
 
 1. Clone the repository:
 
