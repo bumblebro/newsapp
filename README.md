@@ -41,4 +41,5 @@ docker run -p 5173:5173 news-aggregator
 3. Open `http://localhost:5173` in your browser.
 
 ## Additional Notes
-- Used only two APIs as all other api providers were not available in google
+- Used only two APIs, as the other news API providers in the list were not available on Google.
+- Added the API directly to simplify its usage within Docker.

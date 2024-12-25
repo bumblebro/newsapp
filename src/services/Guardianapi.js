@@ -1,6 +1,5 @@
 import axios from "axios";
 
-//added api directly so that is easy to use it in docker
 async function Guardianapi(input) {
   const result = await axios(
     `https://content.guardianapis.com/search?q=${input}&api-key=243914e8-8901-4435-8d44-80573fdbe98d&page-size=20`
