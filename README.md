@@ -1,8 +1,46 @@
-# React + Vite
+# News Aggregator App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based news aggregator website that pulls articles from various sources.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Article search and filtering
+- Personalized news feed
+- Mobile-responsive design
+
+## Technologies Used
+
+- React.js
+- APIs: [NewsAPI, The Guardian]
+- Docker for containerization
+
+## How to Run Locally
+
+1. Clone the repository:
+
+git clone https://github.com/bumblebro/newsapp.git
+
+2. Install dependencies:
+
+npm install
+
+3. Start the development server:
+
+npm run dev
+
+4. Open `http://localhost:3000` in your browser.
+
+## Running with Docker
+
+1. Build the Docker image:
+
+docker build -t news-aggregator .
+
+2. Run the container:
+
+docker run -p 5173:5173 news-aggregator
+
+3. Open `http://localhost:5173` in your browser.
+
+## Additional Notes
+- Used only two APIs as all other api providers were not available in google

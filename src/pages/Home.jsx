@@ -40,19 +40,16 @@ function Home() {
       );
     }
     if (startdate) {
-
       setFilteredNews((prev) =>
         prev.filter((item) => item.datePublished > startdate)
       );
     }
     if (enddate) {
-
       setFilteredNews((prev) =>
         prev.filter((item) => item.datePublished < enddate)
       );
     }
     if (source) {
-
       setFilteredNews((prev) =>
         prev.filter((item) => item.source.toLowerCase() == source.toLowerCase())
       );
@@ -84,23 +81,23 @@ function Home() {
             };
           })
         );
-        // const result2 = await Newsapi("Random");
-        // console.log("result2", result2);
-        // setPrefNews((prev) => [
-        //   ...prev,
-        //   ...result2.articles.map((item) => {
-        //     return {
-        //       author: item.author,
-        //       title: item.title,
-        //       url: item.url,
-        //       datePublished: moment(item.publishedAt)
-        //         .utc()
-        //         .format("YYYY-MM-DD"),
-        //       section: "Random",
-        //       source: "newsapi",
-        //     };
-        //   }),
-        // ]);
+        const result2 = await Newsapi("Random");
+        console.log("result2", result2);
+        setPrefNews((prev) => [
+          ...prev,
+          ...result2.articles.map((item) => {
+            return {
+              author: item.author,
+              title: item.title,
+              url: item.url,
+              datePublished: moment(item.publishedAt)
+                .utc()
+                .format("YYYY-MM-DD"),
+              section: "Random",
+              source: "newsapi",
+            };
+          }),
+        ]);
 
         return;
       }
@@ -151,7 +148,6 @@ function Home() {
           let allArticles = [];
           for (let item of category) {
             const result = await Newsapi(item);
-        
 
             const filteredArticles = result.articles
               .filter(
